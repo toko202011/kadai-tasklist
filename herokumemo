@@ -7,3 +7,7 @@ heroku  https://git.heroku.com/guarded-cliffs-45908.git (fetch)
 heroku  https://git.heroku.com/guarded-cliffs-45908.git (push)
 origin  https://github.com/toko202011/kadai-tasklist.git (fetch)
 origin  https://github.com/toko202011/kadai-tasklist.git (push)
+
+ec2-user:~/environment/tasklist (master) $ heroku create
+Creating app... done, ⬢ guarded-cliffs-45908
+https://guarded-cliffs-45908.herokuapp.com/ | https://git.heroku.com/guarded-cliffs-45908.git
