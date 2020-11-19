@@ -1,15 +1,24 @@
 <h1>タスクリスト</h1>
 
 <!-- ユーザログインの場合 -->
-<ul>
-  <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %> : <%= task.content %> &gt; <%= task.status %></li>
-  <% end %>
-</ul>
+<% if logged_in? %>
+  <p>ログイン完了ユーザー：<%= current_user.name %> さん</p>
 
-<%= link_to 'タスク登録', new_task_path %>
+  <ul>
+    <% @tasks.each do |task| %>
+      <li><%= link_to task.id, task %> : <%= task.content %> &gt; <%= task.status %></li>
+    <% end %>
+  </ul>
 
-<!-- ユーザログアウトの場合 -->
+  <%= link_to 'タスク登録', new_task_path %>
+  <%= link_to 'ログアウト', login_path %>
 
-<!-- ユーザログアウトもしくは未登録の場合 -->
-<%= link_to '新規登録', signup_path %>
+<% elsif %>
+  <!-- ユーザログアウトの場合 -->
+  <%= link_to 'ログイン', login_path %>
+
+<% else %>
+  <!-- ユーザログアウトもしくは未登録の場合 -->
+  <%= link_to 'ユーザ新規登録', signup_path %>
+
+<% end %>
