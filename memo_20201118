@@ -1,24 +1,31 @@
 | tasklist_development      |
 | tasklist_test    
 
-         Prefix Verb   URI Pattern                                                                              Controller#Action
-     users_show GET    /users/show(.:format)                                                                    users#show
-      users_new GET    /users/new(.:format)                                                                     users#new
-   users_create GET    /users/create(.:format)                                                                  users#create
- toppages_index GET    /toppages/index(.:format)                                                                toppages#index
-          login GET    /login(.:format)                                                                         sessions#new
-                POST   /login(.:format)                                                                         sessions#create
-         logout DELETE /logout(.:format)                                                                        sessions#destroy
-         signup GET    /signup(.:format)                                                                        users#new
-          tasks GET    /tasks(.:format)                                                                         tasks#index
-                POST   /tasks(.:format)                                                                         tasks#create
-       new_task GET    /tasks/new(.:format)                                                                     tasks#new
-      edit_task GET    /tasks/:id/edit(.:format)                                                                tasks#edit
-           task GET    /tasks/:id(.:format)                                                                     tasks#show
-                PATCH  /tasks/:id(.:format)                                                                     tasks#update
-                PUT    /tasks/:id(.:format)                                                                     tasks#update
-                DELETE /tasks/:id(.:format)                                                                     tasks#destroy
-          users GET    /users(.:format)                                                                         users#index
-                POST   /users(.:format)                                                                         users#create
-       new_user GET    /users/new(.:format)                                                                     users#new
-           user GET    /users/:id(.:format)                                                                     users#show
+ec2-user:~/environment/tasklist (master) $ rails routes
+       Prefix Verb   URI Pattern              Controller#Action
+         root GET    /                        tasks#index
+   users_show GET    /users/show(.:format)    users#show
+    users_new GET    /users/new(.:format)     users#new
+ users_create GET    /users/create(.:format)  users#create
+        login GET    /login(.:format)         sessions#new
+              POST   /login(.:format)         sessions#create
+       logout DELETE /logout(.:format)        sessions#destroy
+       signup GET    /signup(.:format)        users#new
+        tasks GET    /tasks(.:format)         tasks#index
+              POST   /tasks(.:format)         tasks#create
+     new_task GET    /tasks/new(.:format)     tasks#new
+    edit_task GET    /tasks/:id/edit(.:format)tasks#edit
+         task GET    /tasks/:id(.:format)     tasks#show
+              PATCH  /tasks/:id(.:format)     tasks#update
+              PUT    /tasks/:id(.:format)     tasks#update
+              DELETE /tasks/:id(.:format)     tasks#destroy
+        users GET    /users(.:format)         users#index
+              POST   /users(.:format)         users#create
+     new_user GET    /users/new(.:format)     users#new
+         user GET    /users/:id(.:format)     users#show
+
+ルーティング	リンク生成メソッドの使用例	生成されるリンク
+index	    tasks_path                 	/tasks
+show    	task_path(@task)         	/tasks/1 など
+new	      new_task_path              	/tasks/new
+edit	    edit_task_path(@task)	    /tasks/1/edit など
