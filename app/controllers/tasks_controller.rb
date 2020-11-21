@@ -1,17 +1,14 @@
 class TasksController < ApplicationController
 
-  before_action :require_user_logged_in
+  before_action :require_user_logged_in, only: [:index, :show, :edit, :update, :destroy]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    if logged_in?
-      @tasks = current_user.tasks.order(id: :desc)
-    end
+    @tasks = current_user.tasks.order(id: :desc)
   end
 
   def show
-    set_task
+    correct_user
   end
 
   def new
@@ -24,18 +21,17 @@ class TasksController < ApplicationController
       flash[:success] = 'タスクが正常に登録されました'
       redirect_to root_url
     else
-      @task = current_user.tasks.order(id: :desc)
       flash[:danger] = 'タスクが登録されませんでした'
-      render '/'
+      render :new
     end
   end
 
   def edit
-    set_task
+    correct_user
   end
 
   def update
-    set_task
+    correct_user
     if @task.update(task_params)
       flash[:success] = 'タスクは正常に更新されました'
       redirect_to @task
@@ -46,9 +42,8 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    set_task
+    correct_user
     @task.destroy
-
     flash[:success] = 'タスクは正常に削除されました'
     redirect_back(fallback_location: root_path)
   end
@@ -67,7 +62,4 @@ class TasksController < ApplicationController
     end
   end
 
-  def set_task
-    @task = Task.find(params[:id])
-  end
 end

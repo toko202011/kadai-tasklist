@@ -1,12 +1,9 @@
 <h1>タスクリスト</h1>
-
-<!-- ユーザログインの場合 -->
-<% if logged_in? %>
   <p>ログイン完了ユーザー：<%= current_user.name %> さん</p>
 
   <ul>
     <% @tasks.each do |task| %>
-      <li><%= task.id %> : <%= task.content %> &gt; <%= task.status %> &gt;
+      <li><%= link_to task.id, task %> : <%= task.content %> &gt; <%= task.status %> &gt;
           <% if current_user == task.user %>
             <%= link_to "更新", edit_task_path(task) %>
             <%= link_to "削除", task, method: :delete, data: {confirm: "削除しますか？" } %>
@@ -17,13 +14,3 @@
 
   <%= link_to 'タスク登録', new_task_path %>
   <%= link_to 'ログアウト', logout_path, method: :delete %>
-
-<% elsif %>
-  <!-- ログアウトの場合 -->
-  <%= link_to 'ログイン', login_path %>
-
-<% else %>
-  <!-- ユーザ未登録の場合 -->
-  <%= link_to 'ユーザ新規登録', signup_path %>
-
-<% end %>
